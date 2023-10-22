@@ -10,6 +10,7 @@ rm(list = ls())
 ```
 
 ```{r, echo=FALSE}
+#downloading needed packages
 library(pacman)
 pacman::p_load(tidyr, ggplot2, dplyr, stargazer)
 ```
@@ -30,6 +31,7 @@ data <- gdp %>%
  left_join( le ,by = c("continent", "country", "year")) %>% 
   mutate(gdpPercap = gdp/pop)
 
+#creating dataset for canada only
 canada <- filter(data, country == "Canada")
 
 ```
@@ -67,15 +69,12 @@ fig2
 With a visual relationship appearing in the plots above, we will now run a linear regression with data from Canada.
 
 ```{r, results='asis', echo = FALSE}
+#running a linear regression for canada 
 r2 <- lm(lifeExp ~ gdpPercap, data=canada)
 
 stargazer(r2, title = "OLS Regression Results", type = "html")
 
 
-```
-
-```{r}
-rmarkdown::render("../analysis/Mac_exercise_code.Rmd", output_file = "../output/report.html")
 ```
 
 
