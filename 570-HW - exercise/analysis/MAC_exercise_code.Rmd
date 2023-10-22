@@ -1,0 +1,81 @@
+---
+title: "Exercise Report"
+author: "Rebecca Wasserman-Olin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+```{r, echo=FALSE}
+library(pacman)
+pacman::p_load(tidyr, ggplot2, dplyr, stargazer)
+```
+
+
+```{r, echo=FALSE}
+#loading in the data from csv files in folder
+gdp <- read.csv("../data/gdp_52-67.csv")
+le <- read.csv("../data/le_52-67.csv")
+
+```
+
+```{r, echo=FALSE}
+#creating a new dataframe to prepare for analysis.
+#Creating a new variable that is gdpPercap = gdp/pop
+
+data <- gdp %>% 
+ left_join( le ,by = c("continent", "country", "year")) %>% 
+  mutate(gdpPercap = gdp/pop)
+
+canada <- filter(data, country == "Canada")
+
+```
+
+# Canada: 1952-1967
+
+The following graphs plot both life expectancy and GDP per capita during the time period 1952-1967.
+
+```{r, echo=FALSE}
+#Visualize life expectancy and gdp per capita over time for Canada in the 1950s and 1960s using a line plot.
+
+fig1 <- ggplot(data = canada, 
+  aes(x = year, y = gdpPercap, group = 1)) +
+  geom_line() +
+  xlab("Year") +
+  ylab("GDP per Capita") +
+  ggtitle("GDP per Capita \n Canada (1952-1967)") +
+theme(plot.title = element_text(hjust = 0.5))
+fig1
+```
+```{r, echo=FALSE}
+
+fig2 <- ggplot(data = canada, 
+  aes(x = year, y = lifeExp, group = 1)) +
+  geom_line() +
+  ylab("Life Expectancy") +
+  xlab("Year") +
+  ggtitle("Life Expectancy \n Canada (1952-1967)") +
+  theme(plot.title = element_text(hjust = 0.5))
+fig2
+```
+
+# Linear Regression
+
+With a visual relationship appearing in the plots above, we will now run a linear regression with data from Canada.
+
+```{r, results='asis', echo = FALSE}
+r2 <- lm(lifeExp ~ gdpPercap, data=canada)
+
+stargazer(r2, title = "OLS Regression Results", type = "html")
+
+
+```
+
+```{r}
+rmarkdown::render("../analysis/Mac_exercise_code.Rmd", output_file = "../output/report.html")
+```
+
+
