@@ -7,16 +7,13 @@
 Folder contents:
 README.md: Instructions and outlines of document
 
-main_mac.sh: Contains the console commands to run the code.
+main_mac.sh: Contains the console commands to run the code. I could not get this to work with my code. It is not functioning.
 
-analysis: The code that exists for the task.
+analysis: The code that exists for the task. This is also where the output will be saved.
 
-output: Where the document created will be saved.
 
 Instructions for completion on Mac:
 
-1. run the file, "main_mac.sh"  Note:  I could not figure out how to run this.  Based on examples this should work, but I do not know how to test it.
-2. Look at output report saved in "/output" folder.
-
-If the above does not work or you also do not know how to run .sh file, do the following.
-Open the 
+1. Open "/analysis/MAC_exercise_code.Rmd" using Rstudio
+2. Click Knit at the top of the page.
+3. Open the output html file that is now located in the "/analysis" folder.
