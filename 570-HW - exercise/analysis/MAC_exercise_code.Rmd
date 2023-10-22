@@ -74,8 +74,6 @@ stargazer(r2, title = "OLS Regression Results", type = "html")
 
 ```
 
-```{r}
-rmarkdown::render("../analysis/Mac_exercise_code.Rmd", output_file = "../output/report.html")
-```
+
 
 
