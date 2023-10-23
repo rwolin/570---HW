@@ -14,6 +14,7 @@ analysis: The code that exists for the task. This is also where the output will 
 
 Instructions for completion on Mac:
 
-1. Open "/analysis/MAC_exercise_code.Rmd" using Rstudio
-2. Click Knit at the top of the page.
-3. Open the output html file that is now located in the "/analysis" folder.
+1. Open the R project in the main folder titled, "570-HW - exercise.Rproj" in Rstudio.
+2. Open "/analysis/MAC_exercise_code.Rmd" within the project.
+3. Click Knit at the top of the page on the code.
+4. Open the output html file that is now located in the "/analysis" folder.
